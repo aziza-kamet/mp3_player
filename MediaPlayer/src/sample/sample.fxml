@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <MediaView fx:id="mediaView" fitHeight="720.0" fitWidth="1280.0" />
+      <Pane fx:id="controlPane" layoutY="620.0" onMouseEntered="#onMouseEnteredView" onMouseExited="#onMouseExitedView" opacity="0.0" prefHeight="100.0" prefWidth="1280.0">
+         <children>
+            <ProgressBar fx:id="progressBar" layoutX="18.0" minHeight="12.0" minWidth="1245.0" prefHeight="12.0" prefWidth="1245.0" progress="0.0" />
+            <Slider fx:id="slider" disable="true" layoutX="18.0" layoutY="-3.0" onMouseClicked="#onSliderClicked" prefHeight="17.0" prefWidth="1245.0" />
+            <Button id="play" fx:id="playButton" disable="true" layoutX="646.0" layoutY="36.0" mnemonicParsing="false" onAction="#onPlayButtonClicked" prefHeight="31.0" prefWidth="31.0">
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="BLACK" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill></Button>
+            <Button id="stop" fx:id="stopButton" disable="true" layoutX="601.0" layoutY="36.0" mnemonicParsing="false" onAction="#onStopButtonClicked" prefHeight="31.0" prefWidth="31.0" />
+            <Button id="pause" fx:id="pauseButton" disable="true" layoutX="646.0" layoutY="36.0" mnemonicParsing="false" onAction="#onPauseButtonClicked" prefHeight="31.0" prefWidth="31.0" visible="false" />
+            <Label fx:id="currentDurationLabel" layoutX="19.0" layoutY="18.0" maxWidth="50.0" minWidth="50.0">
+               <font>
+                  <Font name="Calibri Light" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalDurationLabel" layoutX="1222.0" layoutY="18.0" maxWidth="50.0" minWidth="50.0" textAlignment="RIGHT">
+               <font>
+                  <Font name="Calibri Light" size="15.0" />
+               </font>
+            </Label>
+            <Button id="right" fx:id="nextButton" disable="true" layoutX="695.0" layoutY="46.0" minHeight="15.0" mnemonicParsing="false" onAction="#onNextButtonClicked" prefHeight="15.0" prefWidth="30.0" />
+            <Button id="left" fx:id="prevButton" disable="true" layoutX="553.0" layoutY="46.0" minHeight="15.0" mnemonicParsing="false" onAction="#onPrevButtonClicked" prefHeight="15.0" prefWidth="30.0" />
+         </children>
+      </Pane>
+      <ImageView fx:id="imageView" fitHeight="300.0" fitWidth="300.0" layoutX="490.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
+      <Rectangle id="frame" fx:id="albumFrame" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="316.0" layoutX="482.0" layoutY="74.0" stroke="#c1c1c1" strokeType="INSIDE" strokeWidth="3.0" visible="false" width="316.0" />
+      <Label fx:id="nameLabel" alignment="CENTER" layoutX="390.0" layoutY="418.0" maxHeight="45.0" maxWidth="500.0" minWidth="500.0" textAlignment="CENTER" textFill="#000000c1">
+         <font>
+            <Font name="AR BONNIE" size="37.0" />
+         </font>
+      </Label>
+      <Label fx:id="artistLabel" alignment="CENTER" layoutX="390.0" layoutY="463.0" maxHeight="45.0" maxWidth="500.0" minWidth="500.0" textAlignment="CENTER" textFill="#000000c1">
+         <font>
+            <Font name="Calibri Light" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="albumLabel" alignment="CENTER" layoutX="390.0" layoutY="489.0" maxHeight="45.0" maxWidth="500.0" minWidth="500.0" textAlignment="CENTER" textFill="#000000c1">
+         <font>
+            <Font name="Calibri Light" size="22.0" />
+         </font>
+      </Label>
+      <Pane fx:id="rightPane" layoutX="1280.0" onMouseEntered="#onMouseEnteredRight" onMouseExited="#onMouseExitedRight" prefHeight="620.0" prefWidth="300.0">
+         <children>
+            <TabPane layoutY="31.0" prefHeight="583.0" prefWidth="300.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab onSelectionChanged="#onVideoTabSelected" text="Video">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ListView fx:id="videoList" layoutY="-4.0" onMouseClicked="#onVideoSelected" prefHeight="548.0" prefWidth="300.0" />
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                <Tab onSelectionChanged="#onAudioTabSelected" text="Audio">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="audioList" layoutY="-2.0" prefHeight="546.0" prefWidth="300.0">
+                                <columns>
+                                  <TableColumn fx:id="artistColumn" prefWidth="148.0" text="Artist" />
+                                  <TableColumn fx:id="songColumn" prefWidth="151.0" text="Song" />
+                                </columns>
+                              </TableView>
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+            <ToolBar minHeight="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="300.0">
+               <items>
+                  <Button id="addButton" graphicTextGap="1.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onAddButtonClicked" prefHeight="20.0" prefWidth="20.0" textAlignment="CENTER" textFill="#0a0a0a">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="-5.0" left="-5.0" right="-5.0" top="-5.0" />
+                     </padding>
+                  </Button>
+                  <Button id="shuffle" graphicTextGap="1.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onShuffleClicked" prefHeight="20.0" prefWidth="20.0" textAlignment="CENTER" textFill="#00b87e">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="-5.0" left="-5.0" right="-5.0" top="-5.0" />
+                     </padding>
+                  </Button>
+                  <Button id="repeat" graphicTextGap="1.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onRepeatClicked" prefHeight="20.0" prefWidth="20.0" textAlignment="CENTER" textFill="#00b87e">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="-5.0" left="-5.0" right="-5.0" top="-5.0" />
+                     </padding>
+                  </Button>
+               </items>
+            </ToolBar>
+         </children>
+      </Pane>
+      <Pane fx:id="logoPane" layoutX="1180.0" onMouseEntered="#onMouseEnteredRight" onMouseExited="#onMouseExitedRight" prefHeight="620.0" prefWidth="100.0" />
+      <Pane fx:id="logoPane" layoutX="402.0" layoutY="214.0" prefHeight="249.0" prefWidth="476.0">
+         <children>
+            <Label layoutX="65.0" layoutY="22.0" prefHeight="130.0" prefWidth="347.0" text="Media Player" textFill="#555555">
+               <font>
+                  <Font name="AR BONNIE" size="94.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="62.0" layoutY="126.0" prefHeight="31.0" prefWidth="347.0" text="move the mouse to the right side of the window" textFill="#aaaaaa">
+               <font>
+                  <Font name="Calibri Light" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>
