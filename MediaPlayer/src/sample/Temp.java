@@ -7,4 +7,9 @@ public class Temp {
 
     private int num;
     private String str;
+
+    public Temp(){
+        this.num = 0;
+        this.str = "";
+    }
 }
