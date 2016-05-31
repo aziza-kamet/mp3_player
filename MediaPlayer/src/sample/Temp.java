@@ -6,4 +6,5 @@ package sample;
 public class Temp {
 
     private int num;
+    private String str;
 }
